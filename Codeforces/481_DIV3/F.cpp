@@ -15,12 +15,14 @@ typedef vector<vPair> vvPair;
 #define SZ(v) (int)v.size()
 
 int main() {
+  ios_base :: sync_with_stdio(false);
+  cin.tie(NULL);
   int n, k;
-  scanf("%d%d", &n, &k);
+  cin >> n >> k;
   vInt skills(n);
   vPair combined;
   REP (i, n) {
-    scanf("%d", &skills[i]);
+    cin >> skills[i];
     combined.push_back({skills[i], i});
   }
 
@@ -28,7 +30,7 @@ int main() {
   vvPair adj(n);
   REP (i, k) {
     int u, v;
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     u --, v --;
     adj[u].push_back({skills[v], v});
     adj[v].push_back({skills[u], u});
@@ -41,7 +43,7 @@ int main() {
     Pair item(skills[i], INT_MIN);
     int cnt1 = lower_bound(ALL(combined), item) - combined.begin();
     int cnt2 = lower_bound(ALL(adj[i]), item) - adj[i].begin();
-    printf("%d%c", cnt1 - cnt2, (i + 1 == n ? 10 :32));
+    cout << cnt1 - cnt2 << char(i + 1 == n ? 10 :32);
   }
 }
 
